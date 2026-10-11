@@ -19,7 +19,6 @@
 }
 
 * { box-sizing:border-box; }
-
 html { scroll-behavior:smooth; }
 
 body {
@@ -301,14 +300,14 @@ main {
   pointer-events:none;
 }
 
-/* Country abbreviations on photos */
+/* Gold country abbreviations on the left */
 
 .landmark {
   display:block;
   position:absolute;
   left:12px;
   top:12px;
-  z-index:2;
+  z-index:3;
   color:#ffbd24;
   background:rgba(33,3,3,.82);
   padding:5px 8px;
@@ -319,19 +318,32 @@ main {
   text-transform:uppercase;
 }
 
-.flag,.rank { z-index:2; }
+/* Hide the flag element in the upper-right corner */
 
 .flag {
+  display:none !important;
+}
+
+/* Cover the white abbreviations baked into the photos */
+
+.art::before {
+  content:'';
   position:absolute;
-  right:12px;
-  top:10px;
-  font-size:25px;
+  top:8px;
+  right:8px;
+  width:48px;
+  height:34px;
+  z-index:2;
+  border-radius:5px;
+  background:rgba(33,3,3,.88);
+  pointer-events:none;
 }
 
 .rank {
   position:absolute;
   bottom:10px;
   left:10px;
+  z-index:3;
   background:#210303;
   color:var(--gold);
   padding:5px 8px;
@@ -503,7 +515,6 @@ footer {
   }
 
   .brand-name { font-size:22px; }
-
   .brand-name span { font-size:14px; }
 
   .nav {
@@ -537,15 +548,12 @@ footer {
   body { background-attachment:scroll; }
 
   .art { height:125px; }
-
   .card-body { padding:10px; }
-
   .ingredients { min-height:110px; }
 }
 
 @media(max-width:390px) {
   .pizza-grid { grid-template-columns:1fr; }
-
   .art { height:165px; }
 
   .desc,
