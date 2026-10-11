@@ -19,7 +19,14 @@ html { scroll-behavior:smooth; }
 body {
   margin:0;
   color:var(--cream);
-  background:radial-gradient(ellipse at top,#651010,var(--wine) 48%,var(--deep));
+  background-color:var(--deep);
+  background-image:
+    linear-gradient(rgba(39,0,0,.30),rgba(33,3,3,.48)),
+    url('./images/background-travel.jpg');
+  background-position:center top;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
   font-family:'DM Sans',sans-serif;
   min-height:100vh;
 }
@@ -88,20 +95,42 @@ main { max-width:1550px;margin:auto;padding:12px 24px 45px; }
 .pizza-card:hover { transform:translateY(-4px); }
 .pizza-card.leader { border:2px solid var(--gold); }
 .art {
-  height:150px;position:relative;display:flex;align-items:center;
-  justify-content:center;overflow:hidden;
+  height:150px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  isolation:isolate;
   background:linear-gradient(135deg,var(--art1),var(--art2));
 }
-.art::before {
-  content:attr(data-mark);position:absolute;right:12px;top:3px;
-  font-size:75px;opacity:.22;
+.pizza-photo {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .35s ease;
+  z-index:0;
 }
+.pizza-card:hover .pizza-photo { transform:scale(1.045); }
+.art::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(180deg,rgba(20,0,0,.28),transparent 42%,rgba(20,0,0,.12));
+  pointer-events:none;
+}
+.landmark,.flag,.rank { z-index:2; }
+.pizza-emoji { display:none; }
 .landmark {
   position:absolute;left:12px;top:12px;font-size:11px;
   font-weight:900;letter-spacing:1px;text-transform:uppercase;
 }
 .flag { position:absolute;right:12px;top:10px;font-size:25px; }
-.pizza-emoji { font-size:100px;filter:drop-shadow(0 7px 7px #1a0000);transform:rotate(-12deg); }
 .rank {
   position:absolute;bottom:10px;left:10px;background:#210303;
   color:var(--gold);padding:5px 8px;border-radius:5px;font-size:10px;font-weight:900;
@@ -136,7 +165,9 @@ main { max-width:1550px;margin:auto;padding:12px 24px 45px; }
 .winner h3 { margin:0;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:26px;text-transform:uppercase; }
 .winner p { color:var(--muted);font-size:12px;line-height:1.6; }
 footer { text-align:center;border-top:1px solid #68251d;padding:24px;color:#b99b7f;font-size:11px;letter-spacing:1px; }
-@media(max-width:1100px) { .pizza-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:1100px) {
+  .pizza-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
 @media(max-width:650px) {
   .topbar { flex-wrap:wrap; }
   .nav { order:3;width:100%;justify-content:space-between;gap:8px; }
@@ -144,12 +175,14 @@ footer { text-align:center;border-top:1px solid #68251d;padding:24px;color:#b99b
   .pizza-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
   main { padding:12px 12px 35px; }
   .section-head { align-items:start;flex-direction:column; }
+  body { background-attachment:scroll; }
   .art { height:125px; }
-  .pizza-emoji { font-size:80px; }
   .card-body { padding:10px; }
   .ingredients { min-height:110px; }
 }
-@media(max-width:390px) { .pizza-grid { grid-template-columns:1fr; } }
+@media(max-width:390px) {
+  .pizza-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
@@ -206,31 +239,31 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const pizzas = [
   {
-    id:'tokyo',name:'Tokyo Teriyaki',country:'Japan',flag:'🇯🇵',mark:'🌸',
+    id:'tokyo',name:'Tokyo Teriyaki',image:'./images/tokyo-teriyaki.jpg',country:'Japan',flag:'🇯🇵',mark:'🌸',
     price:13.99,color:'#ff9aa8',c1:'#812329',c2:'#32100f',
     desc:'Sweet, savoury and full of Japanese-inspired umami.',
     ingredients:['Teriyaki chicken','Mozzarella','Mushrooms','Red onion','Sesame & spring onion']
   },
   {
-    id:'mexico',name:'Mexico Taco',country:'Mexico',flag:'🇲🇽',mark:'🌶️',
+    id:'mexico',name:'Mexico Taco',image:'./images/mexico-taco.jpg',country:'Mexico',flag:'🇲🇽',mark:'🌶️',
     price:13.99,color:'#a4dc83',c1:'#176447',c2:'#143526',
     desc:'A bold, spicy fiesta inspired by street-food favourites.',
     ingredients:['Spiced beef','Mozzarella','Jalapeños','Bell pepper','Corn & cilantro']
   },
   {
-    id:'texas',name:'Texas BBQ',country:'United States',flag:'🇺🇸',mark:'🤠',
+    id:'texas',name:'Texas BBQ',image:'./images/texas-bbq.jpg',country:'United States',flag:'🇺🇸',mark:'🤠',
     price:13.99,color:'#ff914d',c1:'#b34d15',c2:'#4c1b0a',
     desc:'Smoky barbecue, tender chicken and a cheesy finish.',
     ingredients:['BBQ chicken','Mozzarella & cheddar','Bacon','Red onion','Fresh parsley']
   },
   {
-    id:'greek',name:'Greek Feta',country:'Greece',flag:'🇬🇷',mark:'🫒',
+    id:'greek',name:'Greek Feta',image:'./images/greek-feta.jpg',country:'Greece',flag:'🇬🇷',mark:'🫒',
     price:12.99,color:'#72d2ff',c1:'#146a9b',c2:'#142b47',
     desc:'A fresh Mediterranean escape with salty feta and olives.',
     ingredients:['Feta & mozzarella','Kalamata olives','Cherry tomatoes','Red onion','Spinach & oregano']
   },
   {
-    id:'seoul',name:'Seoul Sweet Chili',country:'South Korea',flag:'🇰🇷',mark:'🏯',
+    id:'seoul',name:'Seoul Sweet Chili',image:'./images/seoul-sweet-chili.jpg',country:'South Korea',flag:'🇰🇷',mark:'🏯',
     price:13.99,color:'#f38bd2',c1:'#87245d',c2:'#35102a',
     desc:'Sweet heat, savoury chicken and a Korean-inspired kick.',
     ingredients:['Sweet chili chicken','Mozzarella','Gochujang sauce','Bell pepper','Sesame & spring onion']
@@ -269,7 +302,7 @@ function render(rows) {
       <div class="art" style="--art1:${pizza.c1};--art2:${pizza.c2}" data-mark="${pizza.mark}">
         <span class="landmark">${pizza.country}</span>
         <span class="flag">${pizza.flag}</span>
-        <span class="pizza-emoji">🍕</span>
+        <img class="pizza-photo" src="${pizza.image}" alt="${pizza.name}" loading="lazy">
         ${total && index === 0 ? '<span class="rank">♛ CURRENT LEADER</span>' : ''}
       </div>
       <div class="card-body">
