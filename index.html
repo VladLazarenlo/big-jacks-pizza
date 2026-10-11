@@ -19,6 +19,7 @@
 }
 
 * { box-sizing:border-box; }
+
 html { scroll-behavior:smooth; }
 
 body {
@@ -257,7 +258,7 @@ main {
   border:2px solid var(--gold);
 }
 
-/* Pizza images */
+/* PIZZA IMAGES */
 
 .art {
   height:150px;
@@ -300,7 +301,7 @@ main {
   pointer-events:none;
 }
 
-/* Gold country abbreviations on the left */
+/* Gold country abbreviations */
 
 .landmark {
   display:block;
@@ -318,12 +319,12 @@ main {
   text-transform:uppercase;
 }
 
-/* Hide the flag element in the upper-right corner */
+/* No extra flags in the top-right corner */
 
 .flag {
   display:none !important;
 }
-  
+
 .rank {
   position:absolute;
   bottom:10px;
@@ -339,7 +340,7 @@ main {
 
 .pizza-emoji { display:none; }
 
-/* Card content */
+/* CARD CONTENT */
 
 .card-body { padding:14px; }
 
@@ -398,7 +399,7 @@ main {
   cursor:wait;
 }
 
-/* Votes */
+/* VOTES */
 
 .vote-row {
   display:flex;
@@ -445,7 +446,81 @@ main {
   min-height:20px;
 }
 
-/* Winner banner */
+/* REAL-TIME MONTHLY COUNTDOWN */
+
+.countdown {
+  max-width:700px;
+  margin:0 auto 22px;
+  padding:14px 18px 16px;
+  text-align:center;
+  border:1px solid #8b3926;
+  border-radius:14px;
+  background:linear-gradient(
+    110deg,
+    rgba(38,3,3,.96),
+    rgba(65,7,5,.94),
+    rgba(38,3,3,.96)
+  );
+  box-shadow:
+    0 8px 26px #16000055,
+    inset 0 0 18px #8b250f22;
+}
+
+.countdown-title {
+  margin-bottom:10px;
+  color:var(--gold);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:17px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.countdown-units {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+}
+
+.countdown-unit {
+  min-width:78px;
+  padding:7px 10px 6px;
+  border:1px solid #70210f;
+  border-radius:10px;
+  background:linear-gradient(180deg,#350603,#210303);
+  box-shadow:inset 0 0 14px #ffbd2410;
+}
+
+.countdown-number {
+  display:block;
+  color:var(--gold);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(27px,3vw,39px);
+  font-weight:900;
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+
+.countdown-label {
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.countdown-separator {
+  color:var(--gold);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:28px;
+  font-weight:900;
+  transform:translateY(-6px);
+}
+
+/* WINNER BANNER */
 
 .winner {
   margin-top:28px;
@@ -479,7 +554,7 @@ footer {
   letter-spacing:1px;
 }
 
-/* Responsive layout */
+/* RESPONSIVE LAYOUT */
 
 @media(max-width:1100px) {
   .pizza-grid {
@@ -535,6 +610,32 @@ footer {
   .art { height:125px; }
   .card-body { padding:10px; }
   .ingredients { min-height:110px; }
+
+  .countdown {
+    padding:12px 8px;
+  }
+
+  .countdown-title {
+    font-size:14px;
+    letter-spacing:1px;
+  }
+
+  .countdown-units { gap:4px; }
+
+  .countdown-unit {
+    min-width:0;
+    flex:1;
+    padding:8px 4px 6px;
+  }
+
+  .countdown-number { font-size:27px; }
+
+  .countdown-label {
+    font-size:8px;
+    letter-spacing:.5px;
+  }
+
+  .countdown-separator { font-size:20px; }
 }
 
 @media(max-width:390px) {
@@ -604,6 +705,39 @@ footer {
 
     <div class="sort-label">✦ LIVE LEADERBOARD</div>
   </div>
+
+  <!-- Countdown timer -->
+  <section class="countdown" aria-label="Time left in this month's race">
+    <div class="countdown-title">♛ Time left in this month's race</div>
+
+    <div class="countdown-units" id="countdown">
+      <div class="countdown-unit">
+        <span class="countdown-number">--</span>
+        <span class="countdown-label">Days</span>
+      </div>
+
+      <span class="countdown-separator">:</span>
+
+      <div class="countdown-unit">
+        <span class="countdown-number">--</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+
+      <span class="countdown-separator">:</span>
+
+      <div class="countdown-unit">
+        <span class="countdown-number">--</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+
+      <span class="countdown-separator">:</span>
+
+      <div class="countdown-unit">
+        <span class="countdown-number">--</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+  </section>
 
   <section class="pizza-grid" id="pizza-grid"></section>
 
@@ -746,6 +880,47 @@ const pizzas = [
 
 const grid = document.getElementById('pizza-grid');
 const message = document.getElementById('message');
+
+/* REAL-TIME COUNTDOWN TO THE END OF THE CURRENT MONTH */
+
+function updateCountdown() {
+  const now = new Date();
+
+  // The countdown ends at midnight on the first day of next month.
+  const nextMonth = new Date(
+    now.getFullYear(),
+    now.getMonth() + 1,
+    1,
+    0, 0, 0, 0
+  );
+
+  const remaining = Math.max(
+    0,
+    nextMonth.getTime() - now.getTime()
+  );
+
+  const totalSeconds = Math.floor(remaining / 1000);
+
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  const countdown = document.getElementById('countdown');
+  const numberElements = countdown.querySelectorAll('.countdown-number');
+
+  const values = [days, hours, minutes, seconds];
+
+  numberElements.forEach((element, index) => {
+    element.textContent = index === 0
+      ? String(values[index])
+      : String(values[index]).padStart(2, '0');
+  });
+}
+
+// Update immediately, then once every second.
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 function showMessage(text) {
   message.textContent = text;
@@ -932,3 +1107,4 @@ setInterval(loadVotes, 10000);
 
 </body>
 </html>
+
