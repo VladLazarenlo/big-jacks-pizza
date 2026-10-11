@@ -18,13 +18,9 @@
   --muted:#d8bca0;
 }
 
-* {
-  box-sizing:border-box;
-}
+* { box-sizing:border-box; }
 
-html {
-  scroll-behavior:smooth;
-}
+html { scroll-behavior:smooth; }
 
 body {
   margin:0;
@@ -41,10 +37,7 @@ body {
   min-height:100vh;
 }
 
-button,
-a {
-  font:inherit;
-}
+button,a { font:inherit; }
 
 a {
   color:inherit;
@@ -64,8 +57,6 @@ a {
   border-bottom:1px solid #8d352b;
 }
 
-/* Logo image and brand name */
-
 .brand {
   display:flex;
   align-items:center;
@@ -75,8 +66,8 @@ a {
 }
 
 .brand-logo {
-  width:76px;
-  height:66px;
+  width:92px;
+  height:80px;
   object-fit:contain;
   display:block;
 }
@@ -167,9 +158,7 @@ h1 {
   margin:18px 0 12px;
 }
 
-h1 span {
-  color:var(--gold);
-}
+h1 span { color:var(--gold); }
 
 .ribbon {
   display:inline-block;
@@ -190,9 +179,7 @@ h1 span {
   line-height:1.7;
 }
 
-.intro strong {
-  color:var(--gold);
-}
+.intro strong { color:var(--gold); }
 
 .status {
   display:flex;
@@ -211,9 +198,7 @@ h1 span {
   font-size:12px;
 }
 
-.status-chip b {
-  color:var(--gold);
-}
+.status-chip b { color:var(--gold); }
 
 /* PIZZA SECTION */
 
@@ -267,9 +252,7 @@ main {
   transition:transform .2s;
 }
 
-.pizza-card:hover {
-  transform:translateY(-4px);
-}
+.pizza-card:hover { transform:translateY(-4px); }
 
 .pizza-card.leader {
   border:2px solid var(--gold);
@@ -318,16 +301,25 @@ main {
   pointer-events:none;
 }
 
-/* Hide country names over photos */
+/* Country abbreviations on photos */
 
 .landmark {
-  display:none;
+  display:block;
+  position:absolute;
+  left:12px;
+  top:12px;
+  z-index:2;
+  color:#ffbd24;
+  background:rgba(33,3,3,.82);
+  padding:5px 8px;
+  border-radius:5px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-.flag,
-.rank {
-  z-index:2;
-}
+.flag,.rank { z-index:2; }
 
 .flag {
   position:absolute;
@@ -348,15 +340,11 @@ main {
   font-weight:900;
 }
 
-.pizza-emoji {
-  display:none;
-}
+.pizza-emoji { display:none; }
 
 /* Card content */
 
-.card-body {
-  padding:14px;
-}
+.card-body { padding:14px; }
 
 .origin {
   font-size:10px;
@@ -406,9 +394,7 @@ main {
   cursor:pointer;
 }
 
-.order:hover {
-  filter:brightness(1.1);
-}
+.order:hover { filter:brightness(1.1); }
 
 .order:disabled {
   opacity:.6;
@@ -512,17 +498,13 @@ footer {
   }
 
   .brand-logo {
-    width:48px;
-    height:48px;
+    width:58px;
+    height:58px;
   }
 
-  .brand-name {
-    font-size:22px;
-  }
+  .brand-name { font-size:22px; }
 
-  .brand-name span {
-    font-size:14px;
-  }
+  .brand-name span { font-size:14px; }
 
   .nav {
     order:3;
@@ -531,63 +513,43 @@ footer {
     gap:8px;
   }
 
-  .nav a {
-    font-size:10px;
-  }
+  .nav a { font-size:10px; }
 
   .topbar .pill {
     padding:12px 16px;
     font-size:11px;
   }
 
-  .hero {
-    padding:36px 16px 28px;
-  }
+  .hero { padding:36px 16px 28px; }
 
   .pizza-grid {
     grid-template-columns:repeat(2,minmax(0,1fr));
     gap:10px;
   }
 
-  main {
-    padding:12px 12px 35px;
-  }
+  main { padding:12px 12px 35px; }
 
   .section-head {
     align-items:start;
     flex-direction:column;
   }
 
-  body {
-    background-attachment:scroll;
-  }
+  body { background-attachment:scroll; }
 
-  .art {
-    height:125px;
-  }
+  .art { height:125px; }
 
-  .card-body {
-    padding:10px;
-  }
+  .card-body { padding:10px; }
 
-  .ingredients {
-    min-height:110px;
-  }
+  .ingredients { min-height:110px; }
 }
 
 @media(max-width:390px) {
-  .pizza-grid {
-    grid-template-columns:1fr;
-  }
+  .pizza-grid { grid-template-columns:1fr; }
 
-  .art {
-    height:165px;
-  }
+  .art { height:165px; }
 
   .desc,
-  .ingredients {
-    min-height:0;
-  }
+  .ingredients { min-height:0; }
 }
 </style>
 </head>
@@ -677,8 +639,8 @@ const SUPABASE_KEY = 'sb_publishable_BeYMkLTlsOf44B2a04bXAQ_kSe58rxo';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /*
-  The order of this array is permanent.
-  Votes never rearrange the pizza cards.
+  This array defines the permanent order of pizza cards.
+  Votes update the statistics, never the card positions.
 */
 
 const pizzas = [
@@ -687,6 +649,7 @@ const pizzas = [
     name:'Tokyo Teriyaki',
     image:'./images/tokyo-teriyaki.jpg',
     country:'Japan',
+    label:'JP',
     flag:'🇯🇵',
     mark:'🌸',
     price:13.99,
@@ -707,6 +670,7 @@ const pizzas = [
     name:'Mexico Taco',
     image:'./images/mexico-taco.jpg',
     country:'Mexico',
+    label:'MX',
     flag:'🇲🇽',
     mark:'🌶️',
     price:13.99,
@@ -727,6 +691,7 @@ const pizzas = [
     name:'Texas BBQ',
     image:'./images/texas-bbq.jpg',
     country:'United States',
+    label:'USA',
     flag:'🇺🇸',
     mark:'🤠',
     price:13.99,
@@ -747,6 +712,7 @@ const pizzas = [
     name:'Greek Feta',
     image:'./images/greek-feta.jpg',
     country:'Greece',
+    label:'GR',
     flag:'🇬🇷',
     mark:'🫒',
     price:12.99,
@@ -767,6 +733,7 @@ const pizzas = [
     name:'Seoul Sweet Chili',
     image:'./images/seoul-sweet-chili.jpg',
     country:'South Korea',
+    label:'KR',
     flag:'🇰🇷',
     mark:'🏯',
     price:13.99,
@@ -802,8 +769,8 @@ function render(rows) {
     .reduce((sum, n) => sum + n, 0);
 
   /*
-    Determine the leader separately from card ordering.
-    This sorting is only used to calculate who is leading.
+    Find the leader separately.
+    This sorting does not affect card positions.
   */
 
   const leader = [...pizzas].sort(
@@ -818,15 +785,14 @@ function render(rows) {
     total ? leader.name : 'No votes yet';
 
   /*
-    Important:
-    Render pizzas in the original array order.
-    Do not sort the array used for rendering.
+    Render using the original array order every time.
   */
 
   grid.innerHTML = '';
 
   pizzas.forEach(pizza => {
     const votes = votesById[pizza.id] || 0;
+
     const percent = total
       ? Math.round(votes / total * 100)
       : 0;
@@ -843,6 +809,7 @@ function render(rows) {
         class="art"
         style="--art1:${pizza.c1};--art2:${pizza.c2}"
       >
+        <span class="landmark">${pizza.label}</span>
         <span class="flag">${pizza.flag}</span>
 
         <img
@@ -934,12 +901,9 @@ async function castVote(id, button) {
       { pizza_id:id }
     );
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
     showMessage('Your vote has been counted! 🍕');
-
     await loadVotes();
 
   } catch (error) {
@@ -955,11 +919,7 @@ async function castVote(id, button) {
   }
 }
 
-/* Initial vote load */
-
 await loadVotes();
-
-/* Live updates when votes change */
 
 supabase
   .channel('pizza-votes')
@@ -973,8 +933,6 @@ supabase
     () => loadVotes()
   )
   .subscribe();
-
-/* Backup refresh every 10 seconds */
 
 setInterval(loadVotes, 10000);
 </script>
