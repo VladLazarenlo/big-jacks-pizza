@@ -1,11 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Big Jack's Pizza — World Pizza Race</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --wine:#390606;
@@ -14,8 +17,15 @@
   --cream:#fff0d0;
   --muted:#d8bca0;
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
 body {
   margin:0;
   color:var(--cream);
@@ -30,70 +40,243 @@ body {
   font-family:'DM Sans',sans-serif;
   min-height:100vh;
 }
-button,a { font:inherit; }
-a { color:inherit;text-decoration:none; }
+
+button,
+a {
+  font:inherit;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+/* HEADER */
+
 .topbar {
-  display:flex;align-items:center;justify-content:space-between;
-  gap:20px;padding:16px 4%;
-  background:#240303;border-bottom:1px solid #8d352b;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:16px 4%;
+  min-height:110px;
+  background:#240303;
+  border-bottom:1px solid #8d352b;
 }
+
+/* Logo image and brand name */
+
 .brand {
-  font-family:'Barlow Condensed',sans-serif;font-size:29px;
-  font-weight:900;line-height:.85;text-shadow:3px 3px #8b1717;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+  cursor:default;
 }
-.brand span { display:block;color:var(--gold);font-size:16px;text-align:right; }
-.nav { display:flex;gap:28px;align-items:center; }
-.nav a { font-size:12px;font-weight:800;letter-spacing:1px; }
-.nav .active { color:var(--gold);border-bottom:3px solid var(--gold);padding:12px 0; }
-.pill,.order {
-  background:var(--gold);color:#260303;border:0;
-  border-radius:999px;font-weight:900;cursor:pointer;
+
+.brand-logo {
+  width:76px;
+  height:66px;
+  object-fit:contain;
+  display:block;
 }
-.pill { padding:13px 22px;font-size:12px; }
-.hero { text-align:center;padding:48px 20px 34px; }
+
+.brand-name {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:27px;
+  font-weight:900;
+  line-height:.9;
+  color:var(--cream);
+  text-shadow:2px 2px #8b1717;
+  white-space:nowrap;
+}
+
+.brand-name span {
+  display:block;
+  color:var(--gold);
+  font-size:16px;
+  text-align:right;
+  margin-top:4px;
+}
+
+/* Navigation: decorative, no redirects */
+
+.nav {
+  display:flex;
+  gap:38px;
+  align-items:center;
+  justify-content:center;
+}
+
+.nav a {
+  display:inline-block;
+  padding:12px 0;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:1px;
+  color:var(--cream);
+  text-decoration:none;
+  border-bottom:4px solid transparent;
+  cursor:default;
+  pointer-events:none;
+}
+
+.nav .active {
+  color:var(--gold);
+  border-bottom-color:var(--gold);
+}
+
+.pill,
+.order {
+  background:var(--gold);
+  color:#260303;
+  border:0;
+  border-radius:999px;
+  font-weight:900;
+}
+
+.topbar .pill {
+  padding:20px 32px;
+  font-size:14px;
+  white-space:nowrap;
+  cursor:default;
+  pointer-events:none;
+}
+
+/* HERO */
+
+.hero {
+  text-align:center;
+  padding:48px 20px 34px;
+}
+
 .eyebrow {
-  color:var(--gold);font-size:12px;font-weight:900;
-  letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:4px;
+  text-transform:uppercase;
 }
+
 h1 {
   font-family:'Barlow Condensed',sans-serif;
-  font-size:clamp(42px,7vw,88px);line-height:.95;
-  font-weight:900;text-transform:uppercase;margin:18px 0 12px;
+  font-size:clamp(42px,7vw,88px);
+  line-height:.95;
+  font-weight:900;
+  text-transform:uppercase;
+  margin:18px 0 12px;
 }
-h1 span { color:var(--gold); }
+
+h1 span {
+  color:var(--gold);
+}
+
 .ribbon {
-  display:inline-block;background:var(--gold);color:#260303;
-  padding:9px 26px;font-family:'Barlow Condensed',sans-serif;
-  font-size:23px;font-weight:900;text-transform:uppercase;
+  display:inline-block;
+  background:var(--gold);
+  color:#260303;
+  padding:9px 26px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:23px;
+  font-weight:900;
+  text-transform:uppercase;
   transform:rotate(-1deg);
 }
-.intro { max-width:680px;margin:22px auto;color:#f5dfc0;line-height:1.7; }
-.intro strong { color:var(--gold); }
-.status { display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px; }
+
+.intro {
+  max-width:680px;
+  margin:22px auto;
+  color:#f5dfc0;
+  line-height:1.7;
+}
+
+.intro strong {
+  color:var(--gold);
+}
+
+.status {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
 .status-chip {
-  padding:10px 16px;border:1px solid #7c2920;
-  border-radius:999px;background:#210303;color:var(--muted);font-size:12px;
+  padding:10px 16px;
+  border:1px solid #7c2920;
+  border-radius:999px;
+  background:#210303;
+  color:var(--muted);
+  font-size:12px;
 }
-.status-chip b { color:var(--gold); }
-main { max-width:1550px;margin:auto;padding:12px 24px 45px; }
+
+.status-chip b {
+  color:var(--gold);
+}
+
+/* PIZZA SECTION */
+
+main {
+  max-width:1550px;
+  margin:auto;
+  padding:12px 24px 45px;
+}
+
 .section-head {
-  display:flex;justify-content:space-between;align-items:end;
-  gap:14px;margin:10px 0 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:14px;
+  margin:10px 0 22px;
 }
+
 .section-head h2 {
-  margin:0;font-family:'Barlow Condensed',sans-serif;
-  font-size:32px;text-transform:uppercase;
+  margin:0;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:32px;
+  text-transform:uppercase;
 }
-.section-head p { margin:5px 0 0;color:var(--muted);font-size:13px; }
-.sort-label { color:var(--gold);font-size:11px;font-weight:900;letter-spacing:1px; }
-.pizza-grid { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px; }
+
+.section-head p {
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.sort-label {
+  color:var(--gold);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.pizza-grid {
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:14px;
+}
+
 .pizza-card {
-  min-width:0;overflow:hidden;border:1px solid #7c2920;border-radius:15px;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #7c2920;
+  border-radius:15px;
   background:linear-gradient(160deg,#4b0b08,#260403);
-  box-shadow:0 10px 30px #16000065;transition:transform .2s;
+  box-shadow:0 10px 30px #16000065;
+  transition:transform .2s;
 }
-.pizza-card:hover { transform:translateY(-4px); }
-.pizza-card.leader { border:2px solid var(--gold); }
+
+.pizza-card:hover {
+  transform:translateY(-4px);
+}
+
+.pizza-card.leader {
+  border:2px solid var(--gold);
+}
+
+/* Pizza images */
+
 .art {
   height:150px;
   position:relative;
@@ -104,6 +287,7 @@ main { max-width:1550px;margin:auto;padding:12px 24px 45px; }
   isolation:isolate;
   background:linear-gradient(135deg,var(--art1),var(--art2));
 }
+
 .pizza-photo {
   position:absolute;
   inset:0;
@@ -115,94 +299,339 @@ main { max-width:1550px;margin:auto;padding:12px 24px 45px; }
   transition:transform .35s ease;
   z-index:0;
 }
-.pizza-card:hover .pizza-photo { transform:scale(1.045); }
+
+.pizza-card:hover .pizza-photo {
+  transform:scale(1.045);
+}
+
 .art::after {
   content:'';
   position:absolute;
   inset:0;
   z-index:1;
-  background:linear-gradient(180deg,rgba(20,0,0,.28),transparent 42%,rgba(20,0,0,.12));
+  background:linear-gradient(
+    180deg,
+    rgba(20,0,0,.12),
+    transparent 42%,
+    rgba(20,0,0,.12)
+  );
   pointer-events:none;
 }
-.landmark,.flag,.rank { z-index:2; }
-.pizza-emoji { display:none; }
+
+/* Hide country names over photos */
+
 .landmark {
-  position:absolute;left:12px;top:12px;font-size:11px;
-  font-weight:900;letter-spacing:1px;text-transform:uppercase;
+  display:none;
 }
-.flag { position:absolute;right:12px;top:10px;font-size:25px; }
+
+.flag,
 .rank {
-  position:absolute;bottom:10px;left:10px;background:#210303;
-  color:var(--gold);padding:5px 8px;border-radius:5px;font-size:10px;font-weight:900;
+  z-index:2;
 }
-.card-body { padding:14px; }
-.origin { font-size:10px;color:var(--muted);font-weight:800;letter-spacing:1px; }
+
+.flag {
+  position:absolute;
+  right:12px;
+  top:10px;
+  font-size:25px;
+}
+
+.rank {
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  background:#210303;
+  color:var(--gold);
+  padding:5px 8px;
+  border-radius:5px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.pizza-emoji {
+  display:none;
+}
+
+/* Card content */
+
+.card-body {
+  padding:14px;
+}
+
+.origin {
+  font-size:10px;
+  color:var(--muted);
+  font-weight:800;
+  letter-spacing:1px;
+}
+
 .pizza-name {
-  color:var(--namecolor);font-family:'Barlow Condensed',sans-serif;
-  font-size:25px;font-weight:900;text-transform:uppercase;line-height:1;
+  color:var(--namecolor);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:25px;
+  font-weight:900;
+  text-transform:uppercase;
+  line-height:1;
   margin:8px 0;
 }
-.desc { min-height:54px;font-size:12px;line-height:1.55;color:#f4dfc7; }
-.ingredients {
-  border-top:1px solid #763027;padding-top:9px;
-  color:#d9bda0;font-size:11px;line-height:1.8;min-height:100px;
+
+.desc {
+  min-height:54px;
+  font-size:12px;
+  line-height:1.55;
+  color:#f4dfc7;
 }
-.price { color:var(--gold);font-size:23px;font-weight:900;margin:12px 0; }
-.order { width:100%;padding:13px 5px;font-size:12px;text-transform:uppercase; }
-.order:hover { filter:brightness(1.1); }
-.order:disabled { opacity:.6;cursor:wait; }
-.vote-row { display:flex;justify-content:space-between;margin-top:15px;font-size:11px;color:var(--muted); }
-.vote-count { color:var(--cream);font-size:14px;font-weight:900; }
-.bar { height:7px;background:#160202;border:1px solid #743026;border-radius:99px;overflow:hidden;margin-top:8px; }
-.bar-fill { height:100%;width:0%;background:var(--barcolor);transition:width .3s; }
-.percent { margin-top:5px;text-align:right;font-size:10px;color:var(--muted); }
-.message { text-align:center;margin:16px 0;color:var(--gold);font-size:13px;min-height:20px; }
+
+.ingredients {
+  border-top:1px solid #763027;
+  padding-top:9px;
+  color:#d9bda0;
+  font-size:11px;
+  line-height:1.8;
+  min-height:100px;
+}
+
+.price {
+  color:var(--gold);
+  font-size:23px;
+  font-weight:900;
+  margin:12px 0;
+}
+
+.order {
+  width:100%;
+  padding:13px 5px;
+  font-size:12px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+.order:hover {
+  filter:brightness(1.1);
+}
+
+.order:disabled {
+  opacity:.6;
+  cursor:wait;
+}
+
+/* Votes */
+
+.vote-row {
+  display:flex;
+  justify-content:space-between;
+  margin-top:15px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.vote-count {
+  color:var(--cream);
+  font-size:14px;
+  font-weight:900;
+}
+
+.bar {
+  height:7px;
+  background:#160202;
+  border:1px solid #743026;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.bar-fill {
+  height:100%;
+  width:0%;
+  background:var(--barcolor);
+  transition:width .3s;
+}
+
+.percent {
+  margin-top:5px;
+  text-align:right;
+  font-size:10px;
+  color:var(--muted);
+}
+
+.message {
+  text-align:center;
+  margin:16px 0;
+  color:var(--gold);
+  font-size:13px;
+  min-height:20px;
+}
+
+/* Winner banner */
+
 .winner {
-  margin-top:28px;padding:24px 16px;text-align:center;
-  border:1px solid #8b3926;border-radius:12px;
+  margin-top:28px;
+  padding:24px 16px;
+  text-align:center;
+  border:1px solid #8b3926;
+  border-radius:12px;
   background:linear-gradient(90deg,#260303,#5b0d0b,#260303);
 }
-.winner h3 { margin:0;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:26px;text-transform:uppercase; }
-.winner p { color:var(--muted);font-size:12px;line-height:1.6; }
-footer { text-align:center;border-top:1px solid #68251d;padding:24px;color:#b99b7f;font-size:11px;letter-spacing:1px; }
+
+.winner h3 {
+  margin:0;
+  color:var(--gold);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:26px;
+  text-transform:uppercase;
+}
+
+.winner p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+footer {
+  text-align:center;
+  border-top:1px solid #68251d;
+  padding:24px;
+  color:#b99b7f;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+/* Responsive layout */
+
 @media(max-width:1100px) {
-  .pizza-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .pizza-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
 }
+
 @media(max-width:650px) {
-  .topbar { flex-wrap:wrap; }
-  .nav { order:3;width:100%;justify-content:space-between;gap:8px; }
-  .nav a { font-size:10px; }
-  .pizza-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
-  main { padding:12px 12px 35px; }
-  .section-head { align-items:start;flex-direction:column; }
-  body { background-attachment:scroll; }
-  .art { height:125px; }
-  .card-body { padding:10px; }
-  .ingredients { min-height:110px; }
+  .topbar {
+    flex-wrap:wrap;
+    padding:14px 18px;
+    gap:14px;
+  }
+
+  .brand-logo {
+    width:48px;
+    height:48px;
+  }
+
+  .brand-name {
+    font-size:22px;
+  }
+
+  .brand-name span {
+    font-size:14px;
+  }
+
+  .nav {
+    order:3;
+    width:100%;
+    justify-content:space-between;
+    gap:8px;
+  }
+
+  .nav a {
+    font-size:10px;
+  }
+
+  .topbar .pill {
+    padding:12px 16px;
+    font-size:11px;
+  }
+
+  .hero {
+    padding:36px 16px 28px;
+  }
+
+  .pizza-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+
+  main {
+    padding:12px 12px 35px;
+  }
+
+  .section-head {
+    align-items:start;
+    flex-direction:column;
+  }
+
+  body {
+    background-attachment:scroll;
+  }
+
+  .art {
+    height:125px;
+  }
+
+  .card-body {
+    padding:10px;
+  }
+
+  .ingredients {
+    min-height:110px;
+  }
 }
+
 @media(max-width:390px) {
-  .pizza-grid { grid-template-columns:1fr; }
+  .pizza-grid {
+    grid-template-columns:1fr;
+  }
+
+  .art {
+    height:165px;
+  }
+
+  .desc,
+  .ingredients {
+    min-height:0;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <header class="topbar">
-  <a class="brand" href="#home">BIG 🍕<br>JACK'S<span>PIZZA</span></a>
-  <nav class="nav">
-    <a href="#home">HOME</a>
-    <a href="#menu">MENU</a>
-    <a class="active" href="#monthly">MONTHLY SPECIAL</a>
-    <a href="#about">ABOUT</a>
+  <div class="brand" aria-label="Big Jack's Pizza">
+    <img
+      class="brand-logo"
+      src="./images/compass-logo.png"
+      alt="Big Jack's Pizza compass logo"
+    >
+    <div class="brand-name">
+      BIG JACK'S
+      <span>PIZZA</span>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#" onclick="return false">HOME</a>
+    <a href="#" onclick="return false">MENU</a>
+    <a class="active" href="#" onclick="return false">MONTHLY SPECIAL</a>
+    <a href="#" onclick="return false">ABOUT</a>
   </nav>
-  <a class="pill" href="#monthly">JOIN THE RACE ↗</a>
+
+  <a class="pill" href="#" onclick="return false">JOIN THE RACE ↗</a>
 </header>
 
 <section class="hero" id="home">
   <div class="eyebrow">✦ Five flavours. Five cultures. One winner. ✦</div>
+
   <h1>The Great <span>World Pizza</span> Race</h1>
+
   <div class="ribbon">Taste the world in every slice!</div>
-  <p class="intro">Five unique flavours from around the world. You choose the winner! Press <strong>Order Now</strong> to cast your vote and help your favourite pizza join our permanent menu.</p>
+
+  <p class="intro">
+    Five unique flavours from around the world.
+    You choose the winner!
+    <strong>One order — one vote.</strong>
+    Buy your favorite pizza and help it become this month's winner.
+    This time, your taste decides the champion!
+  </p>
+
   <div class="status">
     <div class="status-chip">MONTHLY RACE <b>● LIVE</b></div>
     <div class="status-chip">Votes cast: <b id="total-votes">Loading...</b></div>
@@ -211,62 +640,147 @@ footer { text-align:center;border-top:1px solid #68251d;padding:24px;color:#b99b
 </section>
 
 <main id="monthly">
+
   <div class="section-head">
     <div>
       <h2>Meet this month's contenders</h2>
-      <p>One click = one vote. No payment, no checkout — just pizza passion.</p>
+      <p>One order — one vote. Your taste decides the winner!</p>
     </div>
+
     <div class="sort-label">✦ LIVE LEADERBOARD</div>
   </div>
 
-  <section class="pizza-grid" id="pizza-grid" aria-live="polite"></section>
+  <section class="pizza-grid" id="pizza-grid"></section>
+
   <div class="message" id="message" role="status"></div>
 
   <section class="winner" id="about">
     <h3>♛ The winner joins our permanent menu!</h3>
-    <p>Every vote matters. Come back to see which flavour takes the crown.<br>Results are shared with everyone visiting this page.</p>
+    <p>
+      Every vote matters. Come back to see which flavour takes the crown.<br>
+      Results are shared with everyone visiting this page.
+    </p>
   </section>
+
 </main>
 
-<footer>BIG JACK'S PIZZA · TASTE THE WORLD IN EVERY SLICE · MONTHLY SPECIAL</footer>
+<footer>
+  BIG JACK'S PIZZA · TASTE THE WORLD IN EVERY SLICE · MONTHLY SPECIAL
+</footer>
 
 <script type="module">
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const SUPABASE_URL = 'https://wyolvgnsoxvfsxqqertq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_BeYMkLTlsOf44B2a04bXAQ_kSe58rxo';
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+/*
+  The order of this array is permanent.
+  Votes never rearrange the pizza cards.
+*/
 
 const pizzas = [
   {
-    id:'tokyo',name:'Tokyo Teriyaki',image:'./images/tokyo-teriyaki.jpg',country:'Japan',flag:'🇯🇵',mark:'🌸',
-    price:13.99,color:'#ff9aa8',c1:'#812329',c2:'#32100f',
+    id:'tokyo',
+    name:'Tokyo Teriyaki',
+    image:'./images/tokyo-teriyaki.jpg',
+    country:'Japan',
+    flag:'🇯🇵',
+    mark:'🌸',
+    price:13.99,
+    color:'#ff9aa8',
+    c1:'#812329',
+    c2:'#32100f',
     desc:'Sweet, savoury and full of Japanese-inspired umami.',
-    ingredients:['Teriyaki chicken','Mozzarella','Mushrooms','Red onion','Sesame & spring onion']
+    ingredients:[
+      'Teriyaki chicken',
+      'Mozzarella',
+      'Mushrooms',
+      'Red onion',
+      'Sesame & spring onion'
+    ]
   },
   {
-    id:'mexico',name:'Mexico Taco',image:'./images/mexico-taco.jpg',country:'Mexico',flag:'🇲🇽',mark:'🌶️',
-    price:13.99,color:'#a4dc83',c1:'#176447',c2:'#143526',
+    id:'mexico',
+    name:'Mexico Taco',
+    image:'./images/mexico-taco.jpg',
+    country:'Mexico',
+    flag:'🇲🇽',
+    mark:'🌶️',
+    price:13.99,
+    color:'#a4dc83',
+    c1:'#176447',
+    c2:'#143526',
     desc:'A bold, spicy fiesta inspired by street-food favourites.',
-    ingredients:['Spiced beef','Mozzarella','Jalapeños','Bell pepper','Corn & cilantro']
+    ingredients:[
+      'Spiced beef',
+      'Mozzarella',
+      'Jalapeños',
+      'Bell pepper',
+      'Corn & cilantro'
+    ]
   },
   {
-    id:'texas',name:'Texas BBQ',image:'./images/texas-bbq.jpg',country:'United States',flag:'🇺🇸',mark:'🤠',
-    price:13.99,color:'#ff914d',c1:'#b34d15',c2:'#4c1b0a',
+    id:'texas',
+    name:'Texas BBQ',
+    image:'./images/texas-bbq.jpg',
+    country:'United States',
+    flag:'🇺🇸',
+    mark:'🤠',
+    price:13.99,
+    color:'#ff914d',
+    c1:'#b34d15',
+    c2:'#4c1b0a',
     desc:'Smoky barbecue, tender chicken and a cheesy finish.',
-    ingredients:['BBQ chicken','Mozzarella & cheddar','Bacon','Red onion','Fresh parsley']
+    ingredients:[
+      'BBQ chicken',
+      'Mozzarella & cheddar',
+      'Bacon',
+      'Red onion',
+      'Fresh parsley'
+    ]
   },
   {
-    id:'greek',name:'Greek Feta',image:'./images/greek-feta.jpg',country:'Greece',flag:'🇬🇷',mark:'🫒',
-    price:12.99,color:'#72d2ff',c1:'#146a9b',c2:'#142b47',
+    id:'greek',
+    name:'Greek Feta',
+    image:'./images/greek-feta.jpg',
+    country:'Greece',
+    flag:'🇬🇷',
+    mark:'🫒',
+    price:12.99,
+    color:'#72d2ff',
+    c1:'#146a9b',
+    c2:'#142b47',
     desc:'A fresh Mediterranean escape with salty feta and olives.',
-    ingredients:['Feta & mozzarella','Kalamata olives','Cherry tomatoes','Red onion','Spinach & oregano']
+    ingredients:[
+      'Feta & mozzarella',
+      'Kalamata olives',
+      'Cherry tomatoes',
+      'Red onion',
+      'Spinach & oregano'
+    ]
   },
   {
-    id:'seoul',name:'Seoul Sweet Chili',image:'./images/seoul-sweet-chili.jpg',country:'South Korea',flag:'🇰🇷',mark:'🏯',
-    price:13.99,color:'#f38bd2',c1:'#87245d',c2:'#35102a',
+    id:'seoul',
+    name:'Seoul Sweet Chili',
+    image:'./images/seoul-sweet-chili.jpg',
+    country:'South Korea',
+    flag:'🇰🇷',
+    mark:'🏯',
+    price:13.99,
+    color:'#f38bd2',
+    c1:'#87245d',
+    c2:'#35102a',
     desc:'Sweet heat, savoury chicken and a Korean-inspired kick.',
-    ingredients:['Sweet chili chicken','Mozzarella','Gochujang sauce','Bell pepper','Sesame & spring onion']
+    ingredients:[
+      'Sweet chili chicken',
+      'Mozzarella',
+      'Gochujang sauce',
+      'Bell pepper',
+      'Sesame & spring onion'
+    ]
   }
 ];
 
@@ -279,48 +793,119 @@ function showMessage(text) {
 
 function render(rows) {
   const votesById = {};
-  rows.forEach(row => votesById[row.id] = Number(row.votes) || 0);
 
-  const sorted = [...pizzas].sort(
-    (a,b) => (votesById[b.id] || 0) - (votesById[a.id] || 0)
-  );
+  rows.forEach(row => {
+    votesById[row.id] = Number(row.votes) || 0;
+  });
 
-  const total = Object.values(votesById).reduce((sum,n) => sum+n,0);
+  const total = Object.values(votesById)
+    .reduce((sum, n) => sum + n, 0);
+
+  /*
+    Determine the leader separately from card ordering.
+    This sorting is only used to calculate who is leading.
+  */
+
+  const leader = [...pizzas].sort(
+    (a, b) =>
+      (votesById[b.id] || 0) -
+      (votesById[a.id] || 0)
+  )[0];
+
   document.getElementById('total-votes').textContent = total;
+
   document.getElementById('leader-name').textContent =
-    total ? sorted[0].name : 'No votes yet';
+    total ? leader.name : 'No votes yet';
+
+  /*
+    Important:
+    Render pizzas in the original array order.
+    Do not sort the array used for rendering.
+  */
 
   grid.innerHTML = '';
 
-  sorted.forEach((pizza,index) => {
+  pizzas.forEach(pizza => {
     const votes = votesById[pizza.id] || 0;
-    const percent = total ? Math.round(votes / total * 100) : 0;
+    const percent = total
+      ? Math.round(votes / total * 100)
+      : 0;
+
+    const isLeader = total > 0 && pizza.id === leader.id;
+
     const card = document.createElement('article');
-    card.className = 'pizza-card' + (total && index === 0 ? ' leader' : '');
+
+    card.className = 'pizza-card' +
+      (isLeader ? ' leader' : '');
 
     card.innerHTML = `
-      <div class="art" style="--art1:${pizza.c1};--art2:${pizza.c2}" data-mark="${pizza.mark}">
-        <span class="landmark">${pizza.country}</span>
+      <div
+        class="art"
+        style="--art1:${pizza.c1};--art2:${pizza.c2}"
+      >
         <span class="flag">${pizza.flag}</span>
-        <img class="pizza-photo" src="${pizza.image}" alt="${pizza.name}" loading="lazy">
-        ${total && index === 0 ? '<span class="rank">♛ CURRENT LEADER</span>' : ''}
+
+        <img
+          class="pizza-photo"
+          src="${pizza.image}"
+          alt="${pizza.name}"
+          loading="lazy"
+        >
+
+        ${
+          isLeader
+            ? '<span class="rank">♛ CURRENT LEADER</span>'
+            : ''
+        }
       </div>
+
       <div class="card-body">
-        <div class="origin">${pizza.flag} &nbsp; MONTHLY CONTENDER</div>
-        <h3 class="pizza-name" style="--namecolor:${pizza.color}">${pizza.name}</h3>
+        <div class="origin">
+          ${pizza.flag} &nbsp; MONTHLY CONTENDER
+        </div>
+
+        <h3
+          class="pizza-name"
+          style="--namecolor:${pizza.color}"
+        >
+          ${pizza.name}
+        </h3>
+
         <p class="desc">${pizza.desc}</p>
-        <div class="ingredients">${pizza.ingredients.map(x => '• ' + x).join('<br>')}</div>
+
+        <div class="ingredients">
+          ${pizza.ingredients.map(x => '• ' + x).join('<br>')}
+        </div>
+
         <div class="price">$${pizza.price.toFixed(2)}</div>
-        <button class="order" data-vote="${pizza.id}">ORDER NOW ↗</button>
-        <div class="vote-row"><span>Community votes</span><span class="vote-count">${votes}</span></div>
-        <div class="bar"><div class="bar-fill" style="width:${percent}%;--barcolor:${pizza.color}"></div></div>
+
+        <button class="order" data-vote="${pizza.id}">
+          ORDER NOW ↗
+        </button>
+
+        <div class="vote-row">
+          <span>Community votes</span>
+          <span class="vote-count">${votes}</span>
+        </div>
+
+        <div class="bar">
+          <div
+            class="bar-fill"
+            style="width:${percent}%;--barcolor:${pizza.color}"
+          ></div>
+        </div>
+
         <div class="percent">${percent}% of all votes</div>
-      </div>`;
+      </div>
+    `;
+
     grid.appendChild(card);
   });
 
   grid.querySelectorAll('[data-vote]').forEach(button => {
-    button.addEventListener('click', () => castVote(button.dataset.vote, button));
+    button.addEventListener('click', () => {
+      castVote(button.dataset.vote, button);
+    });
   });
 }
 
@@ -339,37 +924,60 @@ async function loadVotes() {
   showMessage('');
 }
 
-async function castVote(id,button) {
+async function castVote(id, button) {
   button.disabled = true;
   button.textContent = 'COUNTING VOTE...';
 
   try {
-    const { error } = await supabase.rpc('cast_vote', { pizza_id:id });
-    if (error) throw error;
+    const { error } = await supabase.rpc(
+      'cast_vote',
+      { pizza_id:id }
+    );
+
+    if (error) {
+      throw error;
+    }
 
     showMessage('Your vote has been counted! 🍕');
+
     await loadVotes();
+
   } catch (error) {
     console.error('Vote error:', error);
-    showMessage('Vote failed. Please check the Supabase function and permissions.');
+
+    showMessage(
+      'Vote failed. Please check the Supabase function and permissions.'
+    );
+
   } finally {
     button.disabled = false;
     button.textContent = 'ORDER NOW ↗';
   }
 }
 
+/* Initial vote load */
+
 await loadVotes();
+
+/* Live updates when votes change */
 
 supabase
   .channel('pizza-votes')
-  .on('postgres_changes', {
-    event:'UPDATE',
-    schema:'public',
-    table:'pizzas'
-  }, () => loadVotes())
+  .on(
+    'postgres_changes',
+    {
+      event:'UPDATE',
+      schema:'public',
+      table:'pizzas'
+    },
+    () => loadVotes()
+  )
   .subscribe();
 
-setInterval(loadVotes,10000);
+/* Backup refresh every 10 seconds */
+
+setInterval(loadVotes, 10000);
 </script>
+
 </body>
 </html>
