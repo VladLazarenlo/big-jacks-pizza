@@ -1,83 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#390606">
-<title>Big Jack's Pizza — The Great World Pizza Race</title>
+<title>Big Jack's Pizza — World Pizza Race</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
-:root{--wine:#390606;--deep:#210303;--red:#6e1010;--gold:#ffbd24;--cream:#fff0d0;--muted:#d8bca0;--line:#7c2920;--green:#a6d68b}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 50% 0%,#651010 0%,var(--wine) 45%,var(--deep) 100%);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(#ffbd24 0.6px,transparent .6px);background-size:7px 7px;mask-image:linear-gradient(to bottom,black,transparent 75%)}
-a{color:inherit;text-decoration:none}
-.topbar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px clamp(18px,4vw,58px);border-bottom:1px solid #8d352b;background:#240303d9}
-.brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(22px,3vw,34px);line-height:.85;letter-spacing:-1px;transform:rotate(-3deg);color:var(--cream);text-shadow:3px 3px 0 #8b1717}
-.brand span{color:var(--gold);font-size:.55em;display:block;text-align:right;letter-spacing:2px;margin-top:7px}
-.nav{display:flex;gap:clamp(12px,3vw,42px);align-items:center;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
-.nav a{padding:12px 0;color:#e5cfb2}
-.nav a.active{color:var(--gold);border-bottom:3px solid var(--gold)}
-.pill{background:var(--gold);color:#240303;padding:12px 22px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.5px;text-transform:uppercase;border:0;cursor:pointer}
-.hero{position:relative;text-align:center;padding:48px 20px 30px;overflow:hidden}
-.eyebrow{color:var(--gold);font-weight:800;letter-spacing:4px;text-transform:uppercase;font-size:12px}
-.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:-1.5px;font-size:clamp(42px,7vw,88px);margin:14px 0 12px}
-.hero h1 span{color:var(--gold)}
-.ribbon{display:inline-block;background:var(--gold);color:#260303;transform:rotate(-1.5deg);padding:8px 28px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(16px,2.5vw,25px);text-transform:uppercase;clip-path:polygon(2% 0,100% 0,97% 100%,0 90%)}
-.intro{max-width:650px;margin:20px auto 0;color:#f5dfc0;line-height:1.65;font-size:15px}
-.intro strong{color:var(--gold)}
-.status{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-.status-chip{border:1px solid var(--line);background:#210303a8;border-radius:999px;padding:9px 15px;font-size:12px;color:var(--muted)}
-.status-chip b{color:var(--gold)}
-main{max-width:1500px;margin:0 auto;padding:10px clamp(14px,2.5vw,36px) 44px}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:10px 0 20px}
-.section-head h2{font-family:'Barlow Condensed',sans-serif;font-size:32px;text-transform:uppercase;margin:0}
-.section-head p{margin:4px 0 0;color:var(--muted);font-size:13px}
-.sort-label{color:var(--gold);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
-.pizza-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
-.pizza-card{position:relative;min-width:0;overflow:hidden;border:1px solid #7c2920;border-radius:14px;background:linear-gradient(160deg,#4b0b08 0%,#260403 80%);box-shadow:0 10px 30px #16000065;transition:transform .2s,border-color .2s}
-.pizza-card:hover{transform:translateY(-5px);border-color:var(--gold)}
-.pizza-card.leader{border-color:var(--gold);box-shadow:0 0 0 1px #ffbd2450,0 10px 35px #16000080}
-.art{height:155px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,var(--art1),var(--art2))}
-.art:before{content:attr(data-mark);position:absolute;font-size:80px;opacity:.23;right:9px;top:0;filter:grayscale(1)}
-.flag{position:absolute;top:10px;right:12px;font-size:28px;filter:drop-shadow(0 2px 4px #210303)}
-.landmark{position:absolute;left:12px;top:10px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:1.4px;color:#fff0d0;text-shadow:0 1px 5px #260303}
-.pizza-emoji{font-size:104px;filter:drop-shadow(0 7px 7px #1a0000);transform:rotate(-12deg);line-height:1}
-.rank{position:absolute;left:10px;bottom:10px;border-radius:5px;background:#210303d9;color:var(--gold);font-size:10px;font-weight:800;padding:5px 8px;text-transform:uppercase;letter-spacing:.8px}
-.card-body{padding:14px 13px 15px}
-.pizza-name{font-family:'Barlow Condensed',sans-serif;font-size:clamp(20px,2vw,26px);font-weight:900;text-transform:uppercase;line-height:.95;margin:0 0 7px;color:var(--namecolor)}
-.origin{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);font-weight:800}
-.desc{font-size:12px;line-height:1.5;color:#f4dfc7;min-height:54px;margin:9px 0 12px}
-.ingredients{font-size:11px;color:#d9bda0;line-height:1.7;min-height:55px;border-top:1px solid #763027;padding-top:9px}
-.price{color:var(--gold);font-weight:900;font-size:22px;margin:11px 0}
-.order{width:100%;background:var(--gold);color:#260303;border:0;border-radius:999px;padding:12px 7px;font-weight:900;font-size:12px;text-transform:uppercase;cursor:pointer;transition:filter .15s,transform .15s}
-.order:hover{filter:brightness(1.1);transform:scale(1.02)}
-.order:disabled{opacity:.6;cursor:wait;transform:none}
-.vote-row{display:flex;justify-content:space-between;align-items:center;gap:5px;margin-top:14px;font-size:11px;color:var(--muted)}
-.vote-count{font-weight:800;color:var(--cream);font-size:13px}
-.bar{height:7px;border-radius:99px;background:#160202;border:1px solid #743026;overflow:hidden;margin-top:7px}
-.bar-fill{height:100%;border-radius:99px;background:var(--namecolor);width:0%;transition:width .35s}
-.percent{font-size:10px;text-align:right;color:var(--muted);margin-top:4px}
-.winner-banner{margin:28px 0 0;padding:24px 20px;border:1px solid #8b3926;border-radius:12px;background:linear-gradient(90deg,#260303,#5b0d0b,#260303);display:flex;align-items:center;justify-content:center;gap:16px;text-align:center}
-.crown{font-size:30px}
-.winner-banner h3{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-size:25px;margin:0;color:var(--gold)}
-.winner-banner p{margin:5px 0 0;font-size:12px;color:var(--muted);line-height:1.5}
-.toast{position:fixed;z-index:10;bottom:22px;left:50%;transform:translate(-50%,140%);background:var(--cream);color:#280303;padding:14px 22px;border-radius:12px;font-weight:700;font-size:14px;box-shadow:0 10px 35px #0008;transition:transform .25s;max-width:90vw;text-align:center}
-.toast.show{transform:translate(-50%,0)}
-footer{border-top:1px solid #68251d;padding:24px;text-align:center;color:#b99b7f;font-size:11px;letter-spacing:1px;text-transform:uppercase}
-@media(max-width:1100px){.pizza-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.pizza-card:nth-child(4),.pizza-card:nth-child(5){max-width:none}}
-@media(max-width:650px){.topbar{flex-wrap:wrap;padding:14px 18px}.nav{order:3;width:100%;justify-content:space-between;gap:10px}.nav a{font-size:10px}.topbar .pill{padding:10px 14px}.hero{padding-top:36px}.pizza-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.art{height:125px}.pizza-emoji{font-size:82px}.card-body{padding:12px 10px}.desc{min-height:70px}.ingredients{min-height:75px}.section-head{align-items:start;flex-direction:column}.winner-banner{padding:18px 12px}}
-@media(max-width:390px){.pizza-grid{grid-template-columns:1fr}.art{height:165px}.pizza-emoji{font-size:110px}.desc,.ingredients{min-height:0}}
+:root {
+  --wine:#390606;
+  --deep:#210303;
+  --gold:#ffbd24;
+  --cream:#fff0d0;
+  --muted:#d8bca0;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  color:var(--cream);
+  background:radial-gradient(ellipse at top,#651010,var(--wine) 48%,var(--deep));
+  font-family:'DM Sans',sans-serif;
+  min-height:100vh;
+}
+button,a { font:inherit; }
+a { color:inherit;text-decoration:none; }
+.topbar {
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:16px 4%;
+  background:#240303;border-bottom:1px solid #8d352b;
+}
+.brand {
+  font-family:'Barlow Condensed',sans-serif;font-size:29px;
+  font-weight:900;line-height:.85;text-shadow:3px 3px #8b1717;
+}
+.brand span { display:block;color:var(--gold);font-size:16px;text-align:right; }
+.nav { display:flex;gap:28px;align-items:center; }
+.nav a { font-size:12px;font-weight:800;letter-spacing:1px; }
+.nav .active { color:var(--gold);border-bottom:3px solid var(--gold);padding:12px 0; }
+.pill,.order {
+  background:var(--gold);color:#260303;border:0;
+  border-radius:999px;font-weight:900;cursor:pointer;
+}
+.pill { padding:13px 22px;font-size:12px; }
+.hero { text-align:center;padding:48px 20px 34px; }
+.eyebrow {
+  color:var(--gold);font-size:12px;font-weight:900;
+  letter-spacing:4px;text-transform:uppercase;
+}
+h1 {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(42px,7vw,88px);line-height:.95;
+  font-weight:900;text-transform:uppercase;margin:18px 0 12px;
+}
+h1 span { color:var(--gold); }
+.ribbon {
+  display:inline-block;background:var(--gold);color:#260303;
+  padding:9px 26px;font-family:'Barlow Condensed',sans-serif;
+  font-size:23px;font-weight:900;text-transform:uppercase;
+  transform:rotate(-1deg);
+}
+.intro { max-width:680px;margin:22px auto;color:#f5dfc0;line-height:1.7; }
+.intro strong { color:var(--gold); }
+.status { display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px; }
+.status-chip {
+  padding:10px 16px;border:1px solid #7c2920;
+  border-radius:999px;background:#210303;color:var(--muted);font-size:12px;
+}
+.status-chip b { color:var(--gold); }
+main { max-width:1550px;margin:auto;padding:12px 24px 45px; }
+.section-head {
+  display:flex;justify-content:space-between;align-items:end;
+  gap:14px;margin:10px 0 22px;
+}
+.section-head h2 {
+  margin:0;font-family:'Barlow Condensed',sans-serif;
+  font-size:32px;text-transform:uppercase;
+}
+.section-head p { margin:5px 0 0;color:var(--muted);font-size:13px; }
+.sort-label { color:var(--gold);font-size:11px;font-weight:900;letter-spacing:1px; }
+.pizza-grid { display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px; }
+.pizza-card {
+  min-width:0;overflow:hidden;border:1px solid #7c2920;border-radius:15px;
+  background:linear-gradient(160deg,#4b0b08,#260403);
+  box-shadow:0 10px 30px #16000065;transition:transform .2s;
+}
+.pizza-card:hover { transform:translateY(-4px); }
+.pizza-card.leader { border:2px solid var(--gold); }
+.art {
+  height:150px;position:relative;display:flex;align-items:center;
+  justify-content:center;overflow:hidden;
+  background:linear-gradient(135deg,var(--art1),var(--art2));
+}
+.art::before {
+  content:attr(data-mark);position:absolute;right:12px;top:3px;
+  font-size:75px;opacity:.22;
+}
+.landmark {
+  position:absolute;left:12px;top:12px;font-size:11px;
+  font-weight:900;letter-spacing:1px;text-transform:uppercase;
+}
+.flag { position:absolute;right:12px;top:10px;font-size:25px; }
+.pizza-emoji { font-size:100px;filter:drop-shadow(0 7px 7px #1a0000);transform:rotate(-12deg); }
+.rank {
+  position:absolute;bottom:10px;left:10px;background:#210303;
+  color:var(--gold);padding:5px 8px;border-radius:5px;font-size:10px;font-weight:900;
+}
+.card-body { padding:14px; }
+.origin { font-size:10px;color:var(--muted);font-weight:800;letter-spacing:1px; }
+.pizza-name {
+  color:var(--namecolor);font-family:'Barlow Condensed',sans-serif;
+  font-size:25px;font-weight:900;text-transform:uppercase;line-height:1;
+  margin:8px 0;
+}
+.desc { min-height:54px;font-size:12px;line-height:1.55;color:#f4dfc7; }
+.ingredients {
+  border-top:1px solid #763027;padding-top:9px;
+  color:#d9bda0;font-size:11px;line-height:1.8;min-height:100px;
+}
+.price { color:var(--gold);font-size:23px;font-weight:900;margin:12px 0; }
+.order { width:100%;padding:13px 5px;font-size:12px;text-transform:uppercase; }
+.order:hover { filter:brightness(1.1); }
+.order:disabled { opacity:.6;cursor:wait; }
+.vote-row { display:flex;justify-content:space-between;margin-top:15px;font-size:11px;color:var(--muted); }
+.vote-count { color:var(--cream);font-size:14px;font-weight:900; }
+.bar { height:7px;background:#160202;border:1px solid #743026;border-radius:99px;overflow:hidden;margin-top:8px; }
+.bar-fill { height:100%;width:0%;background:var(--barcolor);transition:width .3s; }
+.percent { margin-top:5px;text-align:right;font-size:10px;color:var(--muted); }
+.message { text-align:center;margin:16px 0;color:var(--gold);font-size:13px;min-height:20px; }
+.winner {
+  margin-top:28px;padding:24px 16px;text-align:center;
+  border:1px solid #8b3926;border-radius:12px;
+  background:linear-gradient(90deg,#260303,#5b0d0b,#260303);
+}
+.winner h3 { margin:0;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:26px;text-transform:uppercase; }
+.winner p { color:var(--muted);font-size:12px;line-height:1.6; }
+footer { text-align:center;border-top:1px solid #68251d;padding:24px;color:#b99b7f;font-size:11px;letter-spacing:1px; }
+@media(max-width:1100px) { .pizza-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:650px) {
+  .topbar { flex-wrap:wrap; }
+  .nav { order:3;width:100%;justify-content:space-between;gap:8px; }
+  .nav a { font-size:10px; }
+  .pizza-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
+  main { padding:12px 12px 35px; }
+  .section-head { align-items:start;flex-direction:column; }
+  .art { height:125px; }
+  .pizza-emoji { font-size:80px; }
+  .card-body { padding:10px; }
+  .ingredients { min-height:110px; }
+}
+@media(max-width:390px) { .pizza-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
+
 <header class="topbar">
-  <a class="brand" href="#" aria-label="Big Jack's Pizza home">BIG 🍕<br>JACK'S<span>PIZZA</span></a>
-  <nav class="nav" aria-label="Main navigation">
-    <a href="#home">Home</a><a href="#menu">Menu</a><a class="active" href="#monthly">Monthly special</a><a href="#about">About</a>
+  <a class="brand" href="#home">BIG 🍕<br>JACK'S<span>PIZZA</span></a>
+  <nav class="nav">
+    <a href="#home">HOME</a>
+    <a href="#menu">MENU</a>
+    <a class="active" href="#monthly">MONTHLY SPECIAL</a>
+    <a href="#about">ABOUT</a>
   </nav>
-  <a class="pill" href="#monthly">Join the race ↗</a>
+  <a class="pill" href="#monthly">JOIN THE RACE ↗</a>
 </header>
 
 <section class="hero" id="home">
@@ -87,4 +172,171 @@ footer{border-top:1px solid #68251d;padding:24px;text-align:center;color:#b99b7f
   <p class="intro">Five unique flavours from around the world. You choose the winner! Press <strong>Order Now</strong> to cast your vote and help your favourite pizza join our permanent menu.</p>
   <div class="status">
     <div class="status-chip">MONTHLY RACE <b>● LIVE</b></div>
-    <div
+    <div class="status-chip">Votes cast: <b id="total-votes">Loading...</b></div>
+    <div class="status-chip">Current leader: <b id="leader-name">Loading...</b></div>
+  </div>
+</section>
+
+<main id="monthly">
+  <div class="section-head">
+    <div>
+      <h2>Meet this month's contenders</h2>
+      <p>One click = one vote. No payment, no checkout — just pizza passion.</p>
+    </div>
+    <div class="sort-label">✦ LIVE LEADERBOARD</div>
+  </div>
+
+  <section class="pizza-grid" id="pizza-grid" aria-live="polite"></section>
+  <div class="message" id="message" role="status"></div>
+
+  <section class="winner" id="about">
+    <h3>♛ The winner joins our permanent menu!</h3>
+    <p>Every vote matters. Come back to see which flavour takes the crown.<br>Results are shared with everyone visiting this page.</p>
+  </section>
+</main>
+
+<footer>BIG JACK'S PIZZA · TASTE THE WORLD IN EVERY SLICE · MONTHLY SPECIAL</footer>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const SUPABASE_URL = 'https://wyolvgnsoxvfsxqqertq.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_BeYMkLTlsOf44B2a04bXAQ_kSe58rxo';
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const pizzas = [
+  {
+    id:'tokyo',name:'Tokyo Teriyaki',country:'Japan',flag:'🇯🇵',mark:'🌸',
+    price:13.99,color:'#ff9aa8',c1:'#812329',c2:'#32100f',
+    desc:'Sweet, savoury and full of Japanese-inspired umami.',
+    ingredients:['Teriyaki chicken','Mozzarella','Mushrooms','Red onion','Sesame & spring onion']
+  },
+  {
+    id:'mexico',name:'Mexico Taco',country:'Mexico',flag:'🇲🇽',mark:'🌶️',
+    price:13.99,color:'#a4dc83',c1:'#176447',c2:'#143526',
+    desc:'A bold, spicy fiesta inspired by street-food favourites.',
+    ingredients:['Spiced beef','Mozzarella','Jalapeños','Bell pepper','Corn & cilantro']
+  },
+  {
+    id:'texas',name:'Texas BBQ',country:'United States',flag:'🇺🇸',mark:'🤠',
+    price:13.99,color:'#ff914d',c1:'#b34d15',c2:'#4c1b0a',
+    desc:'Smoky barbecue, tender chicken and a cheesy finish.',
+    ingredients:['BBQ chicken','Mozzarella & cheddar','Bacon','Red onion','Fresh parsley']
+  },
+  {
+    id:'greek',name:'Greek Feta',country:'Greece',flag:'🇬🇷',mark:'🫒',
+    price:12.99,color:'#72d2ff',c1:'#146a9b',c2:'#142b47',
+    desc:'A fresh Mediterranean escape with salty feta and olives.',
+    ingredients:['Feta & mozzarella','Kalamata olives','Cherry tomatoes','Red onion','Spinach & oregano']
+  },
+  {
+    id:'seoul',name:'Seoul Sweet Chili',country:'South Korea',flag:'🇰🇷',mark:'🏯',
+    price:13.99,color:'#f38bd2',c1:'#87245d',c2:'#35102a',
+    desc:'Sweet heat, savoury chicken and a Korean-inspired kick.',
+    ingredients:['Sweet chili chicken','Mozzarella','Gochujang sauce','Bell pepper','Sesame & spring onion']
+  }
+];
+
+const grid = document.getElementById('pizza-grid');
+const message = document.getElementById('message');
+
+function showMessage(text) {
+  message.textContent = text;
+}
+
+function render(rows) {
+  const votesById = {};
+  rows.forEach(row => votesById[row.id] = Number(row.votes) || 0);
+
+  const sorted = [...pizzas].sort(
+    (a,b) => (votesById[b.id] || 0) - (votesById[a.id] || 0)
+  );
+
+  const total = Object.values(votesById).reduce((sum,n) => sum+n,0);
+  document.getElementById('total-votes').textContent = total;
+  document.getElementById('leader-name').textContent =
+    total ? sorted[0].name : 'No votes yet';
+
+  grid.innerHTML = '';
+
+  sorted.forEach((pizza,index) => {
+    const votes = votesById[pizza.id] || 0;
+    const percent = total ? Math.round(votes / total * 100) : 0;
+    const card = document.createElement('article');
+    card.className = 'pizza-card' + (total && index === 0 ? ' leader' : '');
+
+    card.innerHTML = `
+      <div class="art" style="--art1:${pizza.c1};--art2:${pizza.c2}" data-mark="${pizza.mark}">
+        <span class="landmark">${pizza.country}</span>
+        <span class="flag">${pizza.flag}</span>
+        <span class="pizza-emoji">🍕</span>
+        ${total && index === 0 ? '<span class="rank">♛ CURRENT LEADER</span>' : ''}
+      </div>
+      <div class="card-body">
+        <div class="origin">${pizza.flag} &nbsp; MONTHLY CONTENDER</div>
+        <h3 class="pizza-name" style="--namecolor:${pizza.color}">${pizza.name}</h3>
+        <p class="desc">${pizza.desc}</p>
+        <div class="ingredients">${pizza.ingredients.map(x => '• ' + x).join('<br>')}</div>
+        <div class="price">$${pizza.price.toFixed(2)}</div>
+        <button class="order" data-vote="${pizza.id}">ORDER NOW ↗</button>
+        <div class="vote-row"><span>Community votes</span><span class="vote-count">${votes}</span></div>
+        <div class="bar"><div class="bar-fill" style="width:${percent}%;--barcolor:${pizza.color}"></div></div>
+        <div class="percent">${percent}% of all votes</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  grid.querySelectorAll('[data-vote]').forEach(button => {
+    button.addEventListener('click', () => castVote(button.dataset.vote, button));
+  });
+}
+
+async function loadVotes() {
+  const { data, error } = await supabase
+    .from('pizzas')
+    .select('id,votes');
+
+  if (error) {
+    console.error('Supabase read error:', error);
+    showMessage('Could not load votes. Check the Supabase connection.');
+    return;
+  }
+
+  render(data || []);
+  showMessage('');
+}
+
+async function castVote(id,button) {
+  button.disabled = true;
+  button.textContent = 'COUNTING VOTE...';
+
+  try {
+    const { error } = await supabase.rpc('cast_vote', { pizza_id:id });
+    if (error) throw error;
+
+    showMessage('Your vote has been counted! 🍕');
+    await loadVotes();
+  } catch (error) {
+    console.error('Vote error:', error);
+    showMessage('Vote failed. Please check the Supabase function and permissions.');
+  } finally {
+    button.disabled = false;
+    button.textContent = 'ORDER NOW ↗';
+  }
+}
+
+await loadVotes();
+
+supabase
+  .channel('pizza-votes')
+  .on('postgres_changes', {
+    event:'UPDATE',
+    schema:'public',
+    table:'pizzas'
+  }, () => loadVotes())
+  .subscribe();
+
+setInterval(loadVotes,10000);
+</script>
+</body>
+</html>
